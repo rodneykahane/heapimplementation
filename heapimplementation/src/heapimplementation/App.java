@@ -3,8 +3,9 @@ package heapimplementation;
 public class App {
 
 	public static void main(String[] args) {
-		Heap heap = new Heap(11);
+		Heap heap = new Heap(12);
 		
+		heap.insert(95);
 		heap.insert(82);
 		heap.insert(51);
 		heap.insert(63);

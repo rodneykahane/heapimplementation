@@ -58,23 +58,39 @@ public class Heap {
 		int lChild=(2*idx)+1;
 		int rChild=(2*idx)+2;
 		Node tmpNode;
+		
 
+		heapArray[0] = heapArray[removeIdx];	
 
-		heapArray[0] = heapArray[removeIdx];
+		System.out.println("");
+			for(int i=0;i<heapArray.length;i++) {
+				
+				//need to do bigger check here, its doing the left child right away if its bigger
+				if(lChild<heapArray.length&&heapArray[lChild].getKey() > heapArray[idx].getKey()) {
+					tmpNode = heapArray[idx];
+					heapArray[idx] = heapArray[lChild];
+					heapArray[lChild] = tmpNode;				
+					idx=(2*idx)+1;
+					lChild=(2*idx)+1;
+					rChild=(2*idx)+2;
+					System.out.print("index: "+i+" - ");
+					//dispHeap();
+					System.out.println("");
 
-		for(int i=0;i<heapArray.length;i++) {
-			if(heapArray[lChild].getKey() > heapArray[idx].getKey()) {
-				tmpNode = heapArray[idx];
-				heapArray[idx] = heapArray[lChild];
-				heapArray[lChild] = heapArray[idx];
+				} else if(lChild<heapArray.length&&heapArray[rChild].getKey() > heapArray[idx].getKey()) {
+					tmpNode = heapArray[idx];
+					heapArray[idx] = heapArray[rChild];
+					heapArray[rChild] = tmpNode;				
+					idx=(2*idx)+2;
+					rChild=(2*idx)+2;
+					lChild=(2*idx)+1;
+					System.out.print("index: "+i+" - ");
+					//dispHeap();
+					System.out.println("");
+				}
 
-			} else if(heapArray[rChild].getKey() > heapArray[idx].getKey()) {
-				tmpNode = heapArray[idx];
-				heapArray[idx] = heapArray[rChild];
-				heapArray[rChild] = heapArray[idx];
 			}
-
-		}
+		
 		currentSize--;
 		return true;
 	}//end remove()
