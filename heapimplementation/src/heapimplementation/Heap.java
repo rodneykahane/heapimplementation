@@ -148,21 +148,22 @@ public class Heap {
 	}
 
 	public void displayHeap() {
-
+		int spacing = heapArray.length/2;
+		
 		System.out.println("                    "+heapArray[0].getKey());
 
 		for(int i=0;i<heapArray.length;i++) {
 
 			int lChld = (2*i)+1;
 			int rChld = (2*i)+2;
-			for(int j=0;j<=i;j++) {
-				System.out.print("      ");
+			for(int j=spacing;j>=i;j--) {
+				System.out.print("   ");
 			}
 			if(lChld<heapArray.length) {
 				System.out.print(heapArray[lChld].getKey());
 			}
-			for(int k=0;k<=i;k++) {
-				System.out.print("      ");
+			for(int k=spacing;k>=i;k--) {
+				System.out.print("  ");
 			}
 			if(rChld<heapArray.length) {
 				System.out.print(heapArray[rChld].getKey());
