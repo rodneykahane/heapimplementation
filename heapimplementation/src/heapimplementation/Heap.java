@@ -52,7 +52,7 @@ public class Heap {
 
 	}//end trickleUp()
 
-	public boolean remove() {
+	/*public boolean remove() {
 		int removeIdx=heapArray.length-1;
 		int idx=0;
 		int lChild=(2*idx)+1;
@@ -60,10 +60,10 @@ public class Heap {
 		Node tmpNode;	
 
 		heapArray[0] = heapArray[removeIdx];
-		
+
 		for(int i=0;i<heapArray.length;i++) {
 			boolean bigger=false;
-			
+
 			//set to true if left is bigger
 			if(lChild<heapArray.length&&heapArray[lChild].getKey()>heapArray[rChild].getKey()) {
 				bigger=true; 
@@ -101,11 +101,60 @@ public class Heap {
 		heapArray = tmpArray;
 		return true;
 	}//end remove()
+	 */
+	//professor's solution
+	public Node remove() {
+		Node root = heapArray[0];
+		currentSize--;
+		heapArray[0] = heapArray[currentSize];
+
+		trickleDown(0);
+
+		return root;
+	}
+
+	private void trickleDown (int idx) {
+
+		int largerChildIdx;
+		Node top = heapArray[idx];
+
+		while(idx<currentSize/2) {
+			int leftChildIdx = (2*idx)+1;
+			int rightChildIdx = (2*idx)+2;
+
+			if(rightChildIdx < currentSize && heapArray[leftChildIdx].getKey()<heapArray[rightChildIdx].getKey()) {
+				largerChildIdx= rightChildIdx;
+			} else {
+				largerChildIdx= leftChildIdx;
+			}
+			if(top.getKey()>=heapArray[largerChildIdx].getKey()) {
+				//successfully made root the largest
+				break;
+			}
+
+			heapArray[idx] = heapArray[largerChildIdx];
+			idx=largerChildIdx;
+
+		}//end while
+
+		heapArray[idx] = top;
+
+	}//end trickleDown()
 
 	public void dispHeap() {
 		for(int i=0;i<heapArray.length;i++) {
 			System.out.print(heapArray[i].getKey()+", ");
 		}
+	}
+
+	public void displayHeap() {
+		int lChld; //(2*idx)+1;
+		int rChld; //(2*idx)+2;
+
+		for(int i=0;i<heapArray.length;i++) {
+			System.out.println("          "+heapArray[0]);
+		}
+
 	}
 
 }//end class
