@@ -35,8 +35,10 @@ public class App {
 		System.out.println("");
 		heap.remove();
 		heap.dispHeap();*/
-		
-		
+		heap.dispHeap();
+		System.out.println("");
+		System.out.println("");
+		heap.displayHeap();
 		
 	}//end main
 
